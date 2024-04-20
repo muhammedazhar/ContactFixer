@@ -2,14 +2,8 @@ import csv
 import re
 
 def IND_country_code(number):
-    # Remove the Left-to-Right Override (LRO) character [U+202D]
-    number = re.sub(r'[\u202A\u202B\u202C\u202D\u202E]', '', number)
-
-    # Remove any existing spaces
-    number = number.replace(' ', '')
-
-    # Remove any existing '-' symbols
-    number = number.replace('-', '')
+    # Removes Unicode control characters, spaces, hyphens, and parentheses from 'number'
+    number = re.sub(r'[\u202A\u202B\u202C\u202D\u202E \-\(\)]', '', number)
 
     # Check if the number is empty or doesn't contain numeric value
     if not number or not any(char.isdigit() for char in number):
